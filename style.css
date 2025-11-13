@@ -1,0 +1,62 @@
+
+/* AgroLink v6 - style.css (refined portal) */
+:root{
+  --green:#0e6b33; --gold:#b8862b; --muted:#556060; --bg:#f7fbf7;
+  --card:#ffffff; --radius:14px;
+  --dark-bg:#082016; --dark-card:#0f1f14; --dark-text:#e6efe8;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, Arial, Helvetica, sans-serif; margin:0; background:var(--bg); color:#07210f; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:18px auto;padding:18px}
+.header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:72px;height:72px;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(14,82,38,0.06)}
+.brand h1{margin:0;font-family:Poppins, Inter, sans-serif;color:var(--green);font-size:22px}
+.slogan{color:var(--muted);font-size:13px}
+.nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tab{padding:10px 12px;border-radius:10px;border:0;background:#fff;color:var(--green);cursor:pointer;box-shadow:0 6px 18px rgba(10,20,10,0.03)}
+.tab.active{background:linear-gradient(180deg,#fff9ef,#fff5e8);border:1px solid rgba(184,134,43,0.12)}
+.layout{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+@media(min-width:1000px){.layout{grid-template-columns:1fr 360px}}
+.card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(10,20,10,0.04)}
+.hero{display:flex;gap:16px;align-items:center;border-radius:12px;overflow:hidden}
+.hero img{width:340px;height:200px;object-fit:cover;border-radius:10px}
+.kpis{display:flex;gap:12px;margin-top:12px}
+.kpi{background:linear-gradient(180deg,#fff,#fffaf3);padding:10px;border-radius:10px;flex:1;text-align:center;border:1px solid rgba(14,82,38,0.03)}
+.compose{display:flex;gap:12px;align-items:flex-start;margin-top:12px}
+.avatar{width:56px;height:56px;border-radius:10px;background:#f1fff3;display:grid;place-items:center;color:var(--green);font-weight:700}
+input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid #eef6ee}
+.btn{background:var(--green);color:#fff;border:0;padding:10px 14px;border-radius:10px;cursor:pointer}
+.small{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;padding:6px 10px;background:#fff8e6;border-radius:999px;font-size:13px;color:var(--green);margin-right:8px;border:1px solid rgba(184,134,43,0.12)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}
+.gallery img{width:100%;height:100px;object-fit:cover;border-radius:8px}
+
+/* assistant */
+.assistant-area{display:flex;flex-direction:column;height:480px}
+.messages{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#fff,#fbfff8);border-radius:10px;border:1px solid #eef6ee}
+.msg{max-width:80%;padding:10px;border-radius:10px;background:#f2f7f2;align-self:flex-start;border:1px solid #e7f2e7}
+.msg.user{background:var(--green);color:#fff;align-self:flex-end}
+.controls{display:flex;gap:8px;margin-top:8px}
+
+/* feed cards */
+.feed{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.post-card{display:flex;gap:12px;align-items:flex-start;border-radius:12px;padding:12px;border:1px solid #eef6ee;background:linear-gradient(180deg,#fff,#fffaf3)}
+.post-card img{width:160px;height:110px;object-fit:cover;border-radius:8px}
+
+/* proposals and freelancers */
+.profile-card{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;border:1px solid #eef6ee;background:#fff}
+.profile-card .avatar-sm{width:54px;height:54px;border-radius:8px;background:#f6fff6;display:grid;place-items:center;color:var(--green);font-weight:700}
+
+/* ranking */
+.ranking{display:flex;flex-direction:column;gap:8px}
+.rank-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;border:1px solid #eef6ee;background:#fff}
+
+/* theme: dark */
+body.theme-dark{background:var(--dark-bg);color:var(--dark-text)}
+body.theme-dark .card{background:var(--dark-card);box-shadow:none}
+body.theme-dark .tab{background:transparent;color:var(--dark-text);border:1px solid rgba(255,255,255,0.03)}
+body.theme-dark .post-card{background:linear-gradient(180deg,#0d2617,#0b2316);border:1px solid rgba(255,255,255,0.03)}
+body.theme-dark .messages{background:linear-gradient(180deg,#07140b,#08120b);border:1px solid rgba(255,255,255,0.03)}
+body.theme-dark .msg{background:#0f2a18;color:var(--dark-text)}
+body.theme-dark .msg.user{background:#2f8a4b;color:#fff}
