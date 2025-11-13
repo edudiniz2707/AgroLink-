@@ -1,0 +1,331 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AgroLink Comunidade Brasil</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="brand">
+      <div class="logo"><img src="images/bg_hero_1.png" alt="logo" style="width:100%;height:100%;object-fit:cover"></div>
+      <div>
+        <h1>AgroLink Comunidade Brasil</h1>
+        <div class="slogan">Conectando o campo, a tecnologia e as pessoas que fazem o agro acontecer.</div>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div id="theme-btn" class="small" style="margin-bottom:6px;cursor:pointer" onclick="cycleTheme()">Tema</div>
+      <div class="small">Versão 6.0</div>
+    </div>
+  </div>
+
+  <div id="login-card" class="card" style="max-width:760px;margin:18px auto">
+    <h2 style="margin-top:0;color:var(--green)">Entrar no AgroLink</h2>
+    <p class="small">Faça login com CPF/CNPJ ou crie uma conta rápida.</p>
+    <div style="display:flex;gap:12px">
+      <input id="login-cpf" placeholder="CPF ou CNPJ">
+      <button class="btn" onclick="submitLogin()">Entrar</button>
+    </div>
+    <hr style="margin:12px 0">
+    <h3 style="margin:6px 0">Criar conta</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <input id="signup-name" placeholder="Nome completo">
+      <input id="signup-cpf" placeholder="CPF ou CNPJ">
+      <input id="signup-phone" placeholder="Telefone / WhatsApp">
+      <input id="signup-city" placeholder="Município">
+      <select id="signup-state"><option value="">Estado (UF)</option><option>MG</option><option>SP</option><option>BA</option><option>RS</option><option>PR</option><option>GO</option><option>MT</option></select>
+    </div>
+    <div style="margin-top:8px">
+      <div class="small">Selecione tipos de produção (marque os que tiver):</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px;margin-top:6px;max-height:180px;overflow:auto;padding-right:6px">
+        <label><input type="checkbox" name="prod" value="Agricultura"> Agricultura</label>
+        <label><input type="checkbox" name="prod" value="Pecuária"> Pecuária</label>
+        <label><input type="checkbox" name="prod" value="Fruticultura"> Fruticultura</label>
+        <label><input type="checkbox" name="prod" value="Apicultura"> Apicultura</label>
+        <label><input type="checkbox" name="prod" value="Piscicultura"> Piscicultura</label>
+        <label><input type="checkbox" name="prod" value="Hortaliças"> Hortaliças</label>
+        <label><input type="checkbox" name="prod" value="Orgânicos"> Orgânicos</label>
+        <label><input type="checkbox" name="prod" value="Silvicultura"> Silvicultura</label>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button class="btn" onclick="submitSignup()">Salvar e Entrar</button>
+      <button class="btn" style="background:#fff;color:var(--green);border:1px solid #eef6ee" onclick="alert('Versão de demonstração')">Publicar</button>
+    </div>
+    <div class="small" style="margin-top:8px">Ao criar conta, seus dados ficam guardados no seu dispositivo.</div>
+  </div>
+
+  <div id="main-card" style="display:none">
+    <nav class="nav" style="margin-bottom:10px">
+      <button class="tab active" data-v="home" onclick="switchTab('home')">🏠 Página Inicial</button>
+      <button class="tab" data-v="news" onclick="switchTab('news')">📰 Notícias do Campo</button>
+      <button class="tab" data-v="proposals" onclick="switchTab('proposals')">💼 Propostas e Oportunidades</button>
+      <button class="tab" data-v="market" onclick="switchTab('market')">🛒 Mercado Agro</button>
+      <button class="tab" data-v="diagnostic" onclick="switchTab('diagnostic')">🌾 Saúde da Produção</button>
+      <button class="tab" data-v="assistant" onclick="switchTab('assistant')">🤖 Pergunte ao AgroLink</button>
+      <button class="tab" data-v="gallery" onclick="switchTab('gallery')">📸 Fotos e Inspirações</button>
+    </nav>
+
+    <div class="layout">
+      <main>
+        <div id="home" class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><h2 id="welcome-name" style="margin:0;color:var(--green)">Olá, Visitante</h2><div class="small">Bem-vindo à comunidade AgroLink.</div></div>
+            <div style="text-align:right"><button class="btn" onclick="showLogin()">Sair</button></div>
+          </div>
+
+          <div class="hero" style="margin-top:12px">
+            <div style="flex:1">
+              <h3 style="margin:0">Novidades e dicas práticas</h3>
+              <div class="small" style="margin-top:6px">Acesse notícias, encontre fornecedores, envie propostas e receba prediagnósticos rápidos.</div>
+              <div class="kpis">
+                <div class="kpi"><strong>+250</strong><div class="small">Produtores</div></div>
+                <div class="kpi"><strong>+50</strong><div class="small">Especialistas</div></div>
+                <div class="kpi"><strong>20+</strong><div class="small">Categorias</div></div>
+              </div>
+              <div style="margin-top:12px">
+                <textarea id="post-text" placeholder="Compartilhe algo com a comunidade (perguntas, fotos, resultados)" rows="2"></textarea>
+                <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" onclick="addPost()">Publicar</button><div class="small">Posts ficam no feed local.</div></div>
+              </div>
+            </div>
+            <img src="images/bg_hero_2.png" alt="hero">
+          </div>
+
+          <div id="feed" class="feed"></div>
+        </div>
+
+        <div id="news" class="card" style="display:none">
+          <h3 style="margin-top:0;color:var(--green)">📰 Notícias do Campo</h3>
+          <select id="news-filter" onchange="renderNews()" style="padding:10px;border-radius:8px;border:1px solid #eef6ee">
+            <option value="all">Todas (regionais, estaduais, nacionais)</option>
+            <option value="regional">Regionais</option>
+            <option value="estadual">Estaduais</option>
+            <option value="nacional">Nacionais</option>
+          </select>
+          <div id="news-list" style="margin-top:12px"></div>
+        </div>
+
+        <div id="proposals" class="card" style="display:none">
+          <h3 style="margin-top:0;color:var(--green)">💼 Propostas e Oportunidades</h3>
+          <div style="display:grid;grid-template-columns:1fr;gap:8px">
+            <div>
+              <h4>Anunciar oportunidade</h4>
+              <input id="proposal-title" placeholder="Título da proposta">
+              <select id="proposal-type"><option>Venda</option><option>Parceria</option><option>Serviço</option><option>Compra</option></select>
+              <input id="proposal-region" placeholder="Região/Estado">
+              <input id="proposal-price" placeholder="Preço estimado (R$)">
+              <input id="proposal-contact" placeholder="Contato (telefone/email)">
+              <textarea id="proposal-desc" rows="2" placeholder="Descrição"></textarea>
+              <div style="margin-top:8px"><button class="btn" onclick="submitProposal()">Enviar proposta</button></div>
+            </div>
+            <hr>
+            <div>
+              <h4>Freelancers e Especialistas</h4>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <input id="free-name" placeholder="Nome completo">
+                <select id="free-level"><option>Iniciante</option><option>Intermediário</option><option>Especialista</option></select>
+                <input id="free-area" placeholder="Área de atuação (ex: agronomia, drones)">
+                <input id="free-contact" placeholder="Contato (WhatsApp/email)">
+                <textarea id="free-bio" rows="2" placeholder="Breve descrição / portfólio"></textarea>
+                <div style="grid-column:1/3"><button class="btn" onclick="submitFreelancer()">Enviar inscrição</button></div>
+              </div>
+              <div id="freelancers-list" style="margin-top:12px"></div>
+            </div>
+            <hr>
+            <div>
+              <h4>Feed de Perguntas e Respostas</h4>
+              <div class="small">Interaja com a comunidade: curta, comente e compartilhe.</div>
+              <div id="proposals-list" style="margin-top:12px"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="market" class="card" style="display:none">
+          <h3 style="margin-top:0;color:var(--green)">🛒 Mercado Agro</h3>
+          <div id="market-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px"></div>
+          <div style="margin-top:12px"><input id="market-seller" placeholder="Empresa anunciante"><input id="market-prod" placeholder="Produto"><input id="market-contact" placeholder="Contato"><div style="margin-top:8px"><button class="btn" onclick="addMarketItem()">Anunciar</button></div></div>
+        </div>
+
+        <div id="diagnostic" class="card" style="display:none">
+          <h3 style="margin-top:0;color:var(--green)">🌾 Saúde da Produção</h3>
+          <input id="diag-name" placeholder="Nome do produtor"><input id="diag-city" placeholder="Município">
+          <select id="diag-activity"><option value="uva">Uva</option><option value="fruta">Fruticultura</option><option value="bovino">Bovinos</option><option value="leite">Produção de leite</option><option value="suino">Suínos</option><option value="ave">Aves</option><option value="caprino">Caprinos</option><option value="ovino">Ovinos</option></select>
+          <textarea id="diag-problem" rows="3" placeholder="Descreva o problema"></textarea>
+          <input id="diag-area" type="number" placeholder="Área (ha)"><select id="diag-soil"><option value="nao">Não</option><option value="sim">Sim</option></select>
+          <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" onclick="runPrediagnosis()">Gerar Prediagnóstico</button></div>
+          <div id="diag-result" style="margin-top:12px"></div>
+        </div>
+
+        <div id="assistant" class="card" style="display:none">
+          <h3 style="margin-top:0;color:var(--green)">🤖 Pergunte ao AgroLink</h3>
+          <div class="assistant-area">
+            <div id="messages" class="messages"><div class="msg">Olá! Pergunte sobre culturas, animais, manejo, pragas ou tecnologia.</div></div>
+            <div class="controls" style="margin-top:8px"><input id="assist-q" placeholder="Ex: 'melhor solo para uva'"><button class="btn" id="ask-btn">Enviar</button></div>
+          </div>
+        </div>
+
+        <div id="gallery" class="card" style="display:none">
+          <h3 style="margin-top:0;color:var(--green)">📸 Fotos e Inspirações</h3>
+          <div id="gallery" class="gallery"></div>
+        </div>
+
+      </main>
+
+      <aside>
+        <div class="card" style="margin-bottom:12px">
+          <h4 style="margin-top:0">Categorias</h4>
+          <div style="margin-top:8px">
+            <span class="pill">Frutas</span><span class="pill">Pecuária</span><span class="pill">Irrigação</span><span class="pill">Tecnologia</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:12px">
+          <h4 style="margin-top:0">Ranking da Comunidade</h4>
+          <div id="ranking-list" class="ranking" style="margin-top:8px"></div>
+        </div>
+
+        <div class="card">
+          <h4 style="margin-top:0">Imagens em destaque</h4>
+          <div id="thumbs" class="gallery" style="margin-top:8px"></div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="footer">AgroLink Comunidade Brasil — Pronto para o GitHub Pages • Conteúdo fictício</footer>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+function switchTab(k){ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); const btn=document.querySelector('.tab[data-v="'+k+'"]'); if(btn) btn.classList.add('active'); ['home','news','proposals','market','diagnostic','assistant','gallery'].forEach(id=>{ const el=document.getElementById(id); if(el) el.style.display=(id===k)?'block':'none'; }); if(k==='news') renderNews(); if(k==='proposals') renderProposals(), renderFreelancers(); if(k==='market') renderMarket(); if(k==='gallery') renderGallery(); }
+window.showLogin = function(){ localStorage.removeItem('agrolink_v6_current'); location.reload(); }
+</script>
+</body>
+</html>
+
+AgroLink v6 — Portal Brasil (pronto para GitHub Pages)
+
+Conteúdo:
+- index.html (portal completo)
+- style.css (estilos)
+- app.js (lógica do cliente usando localStorage)
+- images/ (imagens otimizadas para web)
+
+Publicação no GitHub Pages:
+1. Crie um repositório no GitHub (ex: agrolink-portal).
+2. Faça upload de todo o conteúdo deste diretório (descompacte o ZIP e envie).
+3. Vá em Settings → Pages → Deploy from branch → escolha 'main' e root (/).
+4. Acesse: https://SEU-USUARIO.github.io/NOME-DO-REPO/
+
+Observações:
+- O site funciona offline usando localStorage. Para ter login real e armazenamento centralizado, conecte a um back-end (Firebase, Supabase, ou API personalizada).
+- Se quiser, eu faço o passo-a-passo com comandos git ou preparo deploy direto no Vercel.
+
+/* AgroLink v6 - style.css (refined portal) */
+:root{
+  --green:#0e6b33; --gold:#b8862b; --muted:#556060; --bg:#f7fbf7;
+  --card:#ffffff; --radius:14px;
+  --dark-bg:#082016; --dark-card:#0f1f14; --dark-text:#e6efe8;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, Arial, Helvetica, sans-serif; margin:0; background:var(--bg); color:#07210f; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:18px auto;padding:18px}
+.header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:72px;height:72px;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(14,82,38,0.06)}
+.brand h1{margin:0;font-family:Poppins, Inter, sans-serif;color:var(--green);font-size:22px}
+.slogan{color:var(--muted);font-size:13px}
+.nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tab{padding:10px 12px;border-radius:10px;border:0;background:#fff;color:var(--green);cursor:pointer;box-shadow:0 6px 18px rgba(10,20,10,0.03)}
+.tab.active{background:linear-gradient(180deg,#fff9ef,#fff5e8);border:1px solid rgba(184,134,43,0.12)}
+.layout{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+@media(min-width:1000px){.layout{grid-template-columns:1fr 360px}}
+.card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 10px 30px rgba(10,20,10,0.04)}
+.hero{display:flex;gap:16px;align-items:center;border-radius:12px;overflow:hidden}
+.hero img{width:340px;height:200px;object-fit:cover;border-radius:10px}
+.kpis{display:flex;gap:12px;margin-top:12px}
+.kpi{background:linear-gradient(180deg,#fff,#fffaf3);padding:10px;border-radius:10px;flex:1;text-align:center;border:1px solid rgba(14,82,38,0.03)}
+.compose{display:flex;gap:12px;align-items:flex-start;margin-top:12px}
+.avatar{width:56px;height:56px;border-radius:10px;background:#f1fff3;display:grid;place-items:center;color:var(--green);font-weight:700}
+input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid #eef6ee}
+.btn{background:var(--green);color:#fff;border:0;padding:10px 14px;border-radius:10px;cursor:pointer}
+.small{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;padding:6px 10px;background:#fff8e6;border-radius:999px;font-size:13px;color:var(--green);margin-right:8px;border:1px solid rgba(184,134,43,0.12)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}
+.gallery img{width:100%;height:100px;object-fit:cover;border-radius:8px}
+
+/* assistant */
+.assistant-area{display:flex;flex-direction:column;height:480px}
+.messages{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#fff,#fbfff8);border-radius:10px;border:1px solid #eef6ee}
+.msg{max-width:80%;padding:10px;border-radius:10px;background:#f2f7f2;align-self:flex-start;border:1px solid #e7f2e7}
+.msg.user{background:var(--green);color:#fff;align-self:flex-end}
+.controls{display:flex;gap:8px;margin-top:8px}
+
+/* feed cards */
+.feed{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.post-card{display:flex;gap:12px;align-items:flex-start;border-radius:12px;padding:12px;border:1px solid #eef6ee;background:linear-gradient(180deg,#fff,#fffaf3)}
+.post-card img{width:160px;height:110px;object-fit:cover;border-radius:8px}
+
+/* proposals and freelancers */
+.profile-card{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;border:1px solid #eef6ee;background:#fff}
+.profile-card .avatar-sm{width:54px;height:54px;border-radius:8px;background:#f6fff6;display:grid;place-items:center;color:var(--green);font-weight:700}
+
+/* ranking */
+.ranking{display:flex;flex-direction:column;gap:8px}
+.rank-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;border:1px solid #eef6ee;background:#fff}
+
+/* theme: dark */
+body.theme-dark{background:var(--dark-bg);color:var(--dark-text)}
+body.theme-dark .card{background:var(--dark-card);box-shadow:none}
+body.theme-dark .tab{background:transparent;color:var(--dark-text);border:1px solid rgba(255,255,255,0.03)}
+body.theme-dark .post-card{background:linear-gradient(180deg,#0d2617,#0b2316);border:1px solid rgba(255,255,255,0.03)}
+body.theme-dark .messages{background:linear-gradient(180deg,#07140b,#08120b);border:1px solid rgba(255,255,255,0.03)}
+body.theme-dark .msg{background:#0f2a18;color:var(--dark-text)}
+body.theme-dark .msg.user{background:#2f8a4b;color:#fff}
+
+
+/* Minimalized app.js for AgroLink v6 - core logic */
+const STORAGE = { users:'agrolink_v6_users', current:'agrolink_v6_current', posts:'agrolink_v6_posts', proposals:'agrolink_v6_proposals', freelancers:'agrolink_v6_freelancers', market:'agrolink_v6_market', diags:'agrolink_v6_diags', ranking:'agrolink_v6_ranking', theme:'agrolink_v6_theme' };
+function $(s){return document.querySelector(s);} function save(k,v){localStorage.setItem(k,JSON.stringify(v));} function load(k,d){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d));}catch(e){return d;}} function escapeHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+if(!localStorage.getItem(STORAGE.posts)) save(STORAGE.posts,[{id:'ps1',user:'João (MG)',text:'Alguém com experiência em gotejo para uva?',img:'images/irrigacao.png',likes:5,comments:[]},{id:'ps2',user:'Maria (BA)',text:'Dicas para reduzir mastite no rebanho?',img:'images/gado.png',likes:8,comments:[]}]);
+if(!localStorage.getItem(STORAGE.market)) save(STORAGE.market,[{id:'m1',title:'Trator 75hp',seller:'AgroMáquinas',price:'R$85.000',contact:'contato@agromaq.com',img:'images/tractor.png'},{id:'m2',title:'Drone pulverizador 10L',seller:'DroneAgro',price:'R$18.500',contact:'vendas@droneagro.com',img:'images/drone.png'}]);
+if(!localStorage.getItem(STORAGE.proposals)) save(STORAGE.proposals,[]); if(!localStorage.getItem(STORAGE.freelancers)) save(STORAGE.freelancers,[]); if(!localStorage.getItem(STORAGE.diags)) save(STORAGE.diags,[]); if(!localStorage.getItem(STORAGE.ranking)) save(STORAGE.ranking,{});
+// Themes
+function applyTheme(t){ if(t==='auto'){ const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; document.body.classList.toggle('theme-dark', prefersDark); } else { document.body.classList.toggle('theme-dark', t==='dark'); } localStorage.setItem(STORAGE.theme,t); updateThemeButton(); } function cycleTheme(){ const cur = localStorage.getItem(STORAGE.theme)||'auto'; const order=['auto','light','dark']; const next = order[(order.indexOf(cur)+1)%order.length]; applyTheme(next); } function updateThemeButton(){ const cur = localStorage.getItem(STORAGE.theme)||'auto'; const btn = document.getElementById('theme-btn'); if(!btn) return; btn.textContent = cur==='auto'? 'Tema: Auto' : (cur==='dark'? 'Tema: Escuro' : 'Tema: Claro'); }
+// Login/signup
+function showLogin(){ document.getElementById('login-card').style.display='block'; document.getElementById('main-card').style.display='none'; const cur = load(STORAGE.current,null); if(cur) openPortal(cur); }
+function openPortal(user){ document.getElementById('login-card').style.display='none'; document.getElementById('main-card').style.display='block'; document.getElementById('welcome-name').textContent = 'Olá, ' + user.name.split(' ')[0] + ' — ' + (user.prod.join(', ')||'Produtor'); save(STORAGE.current,user); renderAll(); }
+function submitSignup(){ const name=$('#signup-name').value.trim(); const cpf=$('#signup-cpf').value.trim(); const phone=$('#signup-phone').value.trim(); const city=$('#signup-city').value.trim(); const state=$('#signup-state').value; const prod=Array.from(document.querySelectorAll('input[name="prod"]:checked')).map(x=>x.value); if(!name||!cpf) return alert('Nome e CPF são obrigatórios.'); const users = load(STORAGE.users,[]); const user={id:'u'+Date.now(),name,cpf,phone,city,state,prod}; users.push(user); save(STORAGE.users,users); openPortal(user); }
+function submitLogin(){ const cpf=$('#login-cpf').value.trim(); if(!cpf) return alert('Digite CPF/CNPJ para entrar.'); const users = load(STORAGE.users,[]); const u = users.find(x=>x.cpf===cpf); if(u) return openPortal(u); alert('Usuário não encontrado.'); }
+// Feed
+function renderFeed(){ const feed = $('#feed'); feed.innerHTML=''; const posts = load(STORAGE.posts,[]).slice().reverse(); posts.forEach(p=>{ const el=document.createElement('div'); el.className='post-card'; el.innerHTML = `<img src="${p.img||'images/bg_hero_1.png'}"><div style="flex:1"><strong>${escapeHtml(p.user)}</strong><div class="small" style="margin-top:6px">${escapeHtml(p.text)}</div><div style="margin-top:8px"><button class="btn" onclick="likePost('${p.id}')">❤️ ${p.likes||0}</button> <button class="btn" onclick="openComments('${p.id}')">💬 Comentários</button></div></div>`; feed.appendChild(el); }); }
+function addPost(){ const text = $('#post-text').value.trim(); if(!text) return alert('Escreva algo antes.'); const posts = load(STORAGE.posts,[]); const cur = load(STORAGE.current,null)||{name:'Visitante'}; const id = 'ps'+Date.now(); posts.push({id,user: cur.name+' ('+(cur.state||'--')+')',text,img:'images/bg_hero_1.png',likes:0,comments:[]}); save(STORAGE.posts,posts); $('#post-text').value=''; addPointsForAction(cur,2); renderFeed(); }
+function likePost(id){ const posts=load(STORAGE.posts,[]); const p=posts.find(x=>x.id===id); if(!p) return; p.likes=(p.likes||0)+1; save(STORAGE.posts,posts); addPointsForAction(load(STORAGE.current,null),1); renderFeed(); }
+function openComments(id){ const posts = load(STORAGE.posts,[]); const p = posts.find(x=>x.id===id); if(!p) return alert('Post não encontrado.'); const txt = prompt('Adicionar comentário:'); if(txt){ p.comments = p.comments||[]; p.comments.push({by:(load(STORAGE.current,null)||{name:'Visitante'}).name, text:txt}); save(STORAGE.posts,posts); addPointsForAction(load(STORAGE.current,null),1); renderFeed(); } }
+// Proposals and Freelancers
+function renderProposals(){ const list = $('#proposals-list'); list.innerHTML=''; const arr = load(STORAGE.proposals,[]); if(arr.length===0){ list.innerHTML='<div class="small">Nenhuma proposta.</div>'; return; } arr.slice().reverse().forEach(p=>{ const d=document.createElement('div'); d.className='card'; d.style.marginBottom='8px'; d.innerHTML = `<strong>${escapeHtml(p.title)}</strong><div class='small'>${escapeHtml(p.type)} • ${escapeHtml(p.region)} • R$ ${escapeHtml(p.price||'--')}</div><div style='margin-top:6px'>${escapeHtml(p.desc)}</div><div style='margin-top:8px'><button class='btn' onclick="contact('${escapeHtml(p.contact||'--')}')">Contactar</button></div>`; list.appendChild(d); }); }
+function submitProposal(){ const title=$('#proposal-title').value.trim(); const type=$('#proposal-type').value; const region=$('#proposal-region').value.trim(); const price=$('#proposal-price').value.trim(); const desc=$('#proposal-desc').value.trim(); const contact=$('#proposal-contact').value.trim(); if(!title) return alert('Preencha título.'); const arr=load(STORAGE.proposals,[]); arr.push({id:'pr'+Date.now(),title,type,region,price,desc,contact}); save(STORAGE.proposals,arr); renderProposals(); addPointsForAction(load(STORAGE.current,null),3); }
+// Freelancers
+function renderFreelancers(){ const list = $('#freelancers-list'); list.innerHTML=''; const arr = load(STORAGE.freelancers,[]); if(arr.length===0){ list.innerHTML='<div class="small">Nenhum freelancer inscrito.</div>'; return; } arr.slice().reverse().forEach(f=>{ const d=document.createElement('div'); d.className='profile-card'; d.innerHTML = `<div class='avatar-sm'>${escapeHtml(f.name.split(' ')[0].slice(0,2))}</div><div style='flex:1'><strong>${escapeHtml(f.name)}</strong><div class='small'>${escapeHtml(f.area)} • ${escapeHtml(f.level)}</div><div class='small' style='margin-top:6px'>${escapeHtml(f.bio)}</div></div><div style='text-align:right'><button class='btn' onclick="contact('${escapeHtml(f.contact||'--')}')">Contactar</button></div>`; list.appendChild(d); }); }
+function submitFreelancer(){ const name=$('#free-name').value.trim(); const area=$('#free-area').value.trim(); const level=$('#free-level').value; const bio=$('#free-bio').value.trim(); const contact=$('#free-contact').value.trim(); if(!name||!area) return alert('Preencha nome e área.'); const arr=load(STORAGE.freelancers,[]); arr.push({id:'f'+Date.now(),name,area,level,bio,contact}); save(STORAGE.freelancers,arr); renderFreelancers(); addPointsForAction(load(STORAGE.current,null),5); $('#free-name').value=''; $('#free-area').value=''; $('#free-bio').value=''; $('#free-contact').value=''; }
+// Market
+function renderMarket(){ const grid = $('#market-grid'); grid.innerHTML=''; const items = load(STORAGE.market,[]); items.forEach(it=>{ const d = document.createElement('div'); d.className='card'; d.style.padding='10px'; d.style.marginBottom='8px'; d.innerHTML = `<img src="${it.img}" style="width:100%;height:120px;object-fit:cover;border-radius:8px"><strong style="display:block;margin-top:8px">${escapeHtml(it.title)}</strong><div class="small">${escapeHtml(it.seller)} • ${escapeHtml(it.price)}</div><div style="margin-top:8px"><button class="btn" onclick="contact('${escapeHtml(it.contact)}')">Contactar</button></div>`; grid.appendChild(d); }); }
+// Diagnostic
+function runPrediagnosis(){ const name=$('#diag-name').value.trim(); const city=$('#diag-city').value.trim(); const act=$('#diag-activity').value; const problem=$('#diag-problem').value.trim().toLowerCase(); const area=parseFloat($('#diag-area').value)||0; const soil=$('#diag-soil').value; if(!name||!city) return alert('Preencha nome e município.'); let score=0; const issues=[]; if(problem.includes('seca')||problem.includes('seco')){score+=2;issues.push('Possível falta de água/irrigação.');} if(problem.includes('praga')||problem.includes('lagarta')||problem.includes('pulgão')){score+=2;issues.push('Monitorar pragas; considerar controle integrado.');} if(problem.includes('queda')||problem.includes('perda')||problem.includes('baixa')){score+=1;issues.push('Produtividade reduzida; avaliar nutrição.');} if(soil==='nao'){score+=1;issues.push('Sem análise de solo: recomenda-se coleta.');} if(area>50){score+=1;issues.push('Área grande: planejar por talhões.');} let severity='Baixa'; if(score>=4) severity='Alta'; else if(score>=2) severity='Média'; const recs=issues.slice(); if(act==='uva') recs.push('Uva: pH 6.0-7.0; prefira gotejo.'); if(act==='bovino') recs.push('Bovino: avalie pastagem e calendário sanitário.'); if(recs.length===0) recs.push('Dados insuficientes — envie mais detalhes.'); const result={producer:name,city,activity:act,severity,recommendations:recs,date:new Date().toLocaleString()}; const arr=load(STORAGE.diags,[]); arr.push(result); save(STORAGE.diags,arr); $('#diag-result').innerHTML = `<div class='card'><strong>Prediagnóstico: ${result.severity}</strong><div class='small'>Produtor: ${result.producer} • ${result.city} • Atividade: ${result.activity}</div><ul>${result.recommendations.map(r=>'<li>'+r+'</li>').join('')}</ul><div style='margin-top:8px'><button class='btn' onclick='shareDiagnosis()'>Compartilhar Resultado</button></div></div>`; addPointsForAction(load(STORAGE.current,null),3); }
+function shareDiagnosis(){ const arr=load(STORAGE.diags,[]); if(!arr.length) return alert('Nenhum diagnóstico disponível.'); const last=arr[arr.length-1]; const text=`Prediagnóstico (${last.date}): ${last.producer} - ${last.city} - Atividade: ${last.activity} - Severidade: ${last.severity}. Recomendações: ${last.recommendations.join('; ')}`; navigator.clipboard?.writeText(text); alert('Resumo copiado para área de transferência.'); }
+// Assistant (simple)
+function assistantReply(q){ const text=q.toLowerCase(); const map=[{k:['uva','videira'],r:['Uvas preferem solo drenado, pH 6-7. Evite encharcar.','Poda e irrigação no florescimento ajudam no calibre.']},{k:['gado','bovino','boi'],r:['Bovinos: rotação de pastos e calendário vacinal.','Monitore parasitas e planeje suplementação.']},{k:['porco','suín'],r:['Suínos: ambiente controlado e biossegurança.','Alimentação por fase melhora desempenho.']},{k:['ave','frango','galinha'],r:['Aves: ventilação, densidade e vacinação.','Biossegurança reduz surtos.']},{k:['irrig','gotejo'],r:['Gotejo economiza água e reduz doenças foliares.','Use sensores para otimizar irrigação.']},{k:['solo','ph','calcario'],r:['Faça análise de solo e aplique calcário conforme laudo.','Matéria orgânica melhora estrutura.']},{k:['praga','lagarta','pulgão'],r:['Monitore com armadilhas e use controle integrado.','Identifique praga antes de aplicar químico.']}] ; for(const m of map){ for(const kw of m.k){ if(text.includes(kw)) return m.r[Math.floor(Math.random()*m.r.length)]; } } return 'Descreva espécie, local e sintomas para dica prática.'; }
+document.getElementById('ask-btn')?.addEventListener('click', ()=>{ const q=$('#assist-q').value.trim(); if(!q) return; const messages=$('#messages'); const user=document.createElement('div'); user.className='msg user'; user.textContent=q; messages.appendChild(user); const loader=document.createElement('div'); loader.className='msg'; loader.textContent='Pensando...'; messages.appendChild(loader); setTimeout(()=>{ loader.remove(); const reply=assistantReply(q); const rdiv=document.createElement('div'); rdiv.className='msg'; rdiv.textContent=reply; messages.appendChild(rdiv); messages.scrollTop=messages.scrollHeight; $('#assist-q').value=''; addPointsForAction(load(STORAGE.current,null),2); },700); });
+function contact(info){ navigator.clipboard?.writeText(info); alert('Contato copiado: '+info); addPointsForAction(load(STORAGE.current,null),1); }
+// Points and ranking
+function addPointsForAction(user,pts){ if(!user) return; const rank = load(STORAGE.ranking,{}); rank[user.id] = (rank[user.id]||0) + (pts||0); save(STORAGE.ranking,rank); renderRanking(); }
+function renderRanking(){ const container = document.getElementById('ranking-list'); if(!container) return; container.innerHTML=''; const rank = load(STORAGE.ranking,{}); const users = load(STORAGE.users,[]); const arr = Object.entries(rank).map(([id,pts])=>{ const u = users.find(x=>x.id===id); return {id,pts,name: u?u.name:'Usuário'} }); arr.sort((a,b)=>b.pts-a.pts); arr.slice(0,10).forEach(r=>{ const div=document.createElement('div'); div.className='rank-item'; div.innerHTML = `<div>${escapeHtml(r.name)}</div><div><strong>${r.pts} pts</strong></div>`; container.appendChild(div); }); }
+// Gallery
+function renderGallery(){ const g = document.getElementById('gallery'); if(!g) return; g.innerHTML=''; const imgs=['bg_hero_1.png','bg_hero_2.png','bg_hero_3.png','bg_hero_4.png','pasto.png','gado.png','porco.png','aves.png','colmeia.png','irrigacao.png','drone.png','uva.png','manga.png','morango.png','solo.png','tractor.png']; imgs.forEach(n=>{ const i=document.createElement('img'); i.src='images/'+n; i.alt=n; g.appendChild(i); }); renderThumbs(); } function renderThumbs(){ const t=document.getElementById('thumbs'); if(!t) return; t.innerHTML=''; ['pasto.png','gado.png','porco.png','aves.png','colmeia.png','irrigacao.png','drone.png','tractor.png'].forEach(n=>{ const i=document.createElement('img'); i.src='images/'+n; i.alt=n; t.appendChild(i); }); }
+// init
+applyTheme(localStorage.getItem(STORAGE.theme)||'auto'); renderFeed(); renderNews = function(){ document.getElementById('news-list').innerHTML = '<div class="small">Notícias fictícias: Feira regional; Programa estadual; Exportações em alta.</div>'; }; renderProposals = renderProposals || function(){}; renderFreelancers = renderFreelancers || function(){}; renderMarket = renderMarket || function(){}; renderGallery(); renderRanking();
+// Expose some functions
+window.submitSignup = submitSignup; window.submitLogin = submitLogin; window.addPost = addPost; window.likePost = likePost; window.openComments = openComments; window.submitProposal = submitProposal; window.submitFreelancer = submitFreelancer; window.renderProposals = renderProposals; window.renderFreelancers = renderFreelancers; window.contact = contact; window.renderMarket = renderMarket; window.runPrediagnosis = runPrediagnosis; window.shareDiagnosis = shareDiagnosis; window.renderGallery = renderGallery; window.renderFeed = renderFeed; window.cycleTheme = cycleTheme; window.renderRanking = renderRanking; window.addPointsForAction = addPointsForAction;
